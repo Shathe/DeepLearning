@@ -34,13 +34,13 @@ Yet to choose. ¿Imagenet? A classification one for sure.
 
 
 
-##Things to learn
+## Things to learn
 - [ ] Why do they need non-linear activations functions?
 - [ ] Backpropagation how it really works
 - [ ] About GRUs LSTM..
 
 
-##My notes
+## My notes
 
 Use the [functional keras API](https://keras.io/getting-started/functional-api-guide/).
 Start using previous projects files.
