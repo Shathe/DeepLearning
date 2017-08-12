@@ -7,7 +7,8 @@ from keras.models import Model
 from keras.preprocessing.image import ImageDataGenerator
 from keras.callbacks import ModelCheckpoint
 from models.Inception import InceptionModel
-from models.ShatheNet import ShatheNet
+from models.ShatheNet import *
+from keras.utils import plot_model
 
 ShatheNet
 parser = argparse.ArgumentParser()
@@ -31,10 +32,10 @@ for _, dirnames, _ in os.walk(train_data_dir):
     n_classes += len(dirnames)
 
 #model = InceptionModel(n_classes=n_classes, weights=None, include_top=False)
-model = ShatheNet(n_classes=n_classes)
+model = ShatheNet_v1(n_classes=n_classes)
 
 model.summary() 
-
+plot_model(model, to_file='v1.png')
 
 # compile the model (should be done *after* setting layers to non-trainable)
 # model.compile(optimizer='rmsprop', loss='categorical_crossentropy')

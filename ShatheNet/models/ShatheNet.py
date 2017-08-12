@@ -7,7 +7,7 @@ from keras.models import Sequential
 from keras.preprocessing.image import ImageDataGenerator
 import numpy as np
 
-def ShatheNet(n_classes=256, weights=None):
+def ShatheNet_v1(n_classes=256, weights=None):
     model = Sequential()
     input_shape = (299, 299, 3)
     model.add(Conv2D(32, (7, 7), padding='same', activation='relu', input_shape=input_shape,
