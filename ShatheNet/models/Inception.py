@@ -7,8 +7,12 @@ from keras.models import Model
 from keras.preprocessing.image import ImageDataGenerator
 from keras.callbacks import ModelCheckpoint
 
-def InceptionModel(n_classes=256, weights=None, include_top=False):
-	base_model = InceptionV3(weights=weights, include_top=include_top)
+def InceptionModel(input_tensor=None, n_classes=256, weights=None, include_top=False):
+	if input_tensor != None:
+			base_model = InceptionV3(input_tensor=input_tensor, weights=weights, include_top=include_top)
+
+	else:
+			base_model = InceptionV3(weights=weights, include_top=include_top)
 	# print(base_model.load_weights("my_model_final.h5", by_name=True))
 
 	# add a global spatial average pooling layer

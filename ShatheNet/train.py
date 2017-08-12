@@ -2,7 +2,7 @@ import argparse
 
 from keras import optimizers
 from keras.applications.inception_v3 import InceptionV3
-from keras.layers import Dense, GlobalAveragePooling2D
+from keras.layers import Dense, GlobalAveragePooling2D, Input
 from keras.models import Model
 from keras.preprocessing.image import ImageDataGenerator
 from keras.callbacks import ModelCheckpoint
@@ -16,11 +16,11 @@ parser.add_argument("--dataFolder", help="folder where the images are going to b
 args = parser.parse_args()
 train_data_dir = args.dataFolder + 'train'
 validation_data_dir = args.dataFolder + 'test'
-nb_train_samples = 23750 
-nb_validation_samples = 7371 
+nb_train_samples = 50000 
+nb_validation_samples = 10000 
 
 epochs = 30
-batch_size = 8
+batch_size = 16
 learning_rate = 0.001
 
 import os
@@ -30,7 +30,9 @@ for _, dirnames, _ in os.walk(train_data_dir):
   # ^ this idiom means "we won't be using this value"
     n_classes += len(dirnames)
 
-model = InceptionModel(n_classes=n_classes, weights=None, include_top=False)
+input_tensor = Input(shape=(299,299,3))  # this assumes K.image_data_format() == 'channels_first'
+
+model = InceptionModel(input_tensor=input_tensor, n_classes=n_classes, weights=None, include_top=False)
 #model = ShatheNet_v1(n_classes=n_classes)
 
 model.summary() 
@@ -56,7 +58,7 @@ train_generator = train_datagen.flow_from_directory(train_data_dir, target_size=
                                                     batch_size=batch_size, class_mode='categorical', shuffle=True)
 
 validation_generator = test_datagen.flow_from_directory(validation_data_dir, target_size=(299, 299),
-                                                        batch_size=(batch_size/2), class_mode='categorical', shuffle=True)
+                                                        batch_size=(batch_size), class_mode='categorical', shuffle=True)
 
 # train the model on the new data for a few epochs
 
