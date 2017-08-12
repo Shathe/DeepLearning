@@ -10,14 +10,13 @@ from models.Inception import InceptionModel
 from models.ShatheNet import *
 from keras.utils import plot_model
 
-ShatheNet
 parser = argparse.ArgumentParser()
 parser.add_argument("--dataFolder", help="folder where the images are going to be saved")
 
 args = parser.parse_args()
 train_data_dir = args.dataFolder + 'train'
 validation_data_dir = args.dataFolder + 'test'
-nb_train_samples = 23751 
+nb_train_samples = 23750 
 nb_validation_samples = 7371 
 
 epochs = 30
@@ -31,8 +30,8 @@ for _, dirnames, _ in os.walk(train_data_dir):
   # ^ this idiom means "we won't be using this value"
     n_classes += len(dirnames)
 
-#model = InceptionModel(n_classes=n_classes, weights=None, include_top=False)
-model = ShatheNet_v1(n_classes=n_classes)
+model = InceptionModel(n_classes=n_classes, weights=None, include_top=False)
+#model = ShatheNet_v1(n_classes=n_classes)
 
 model.summary() 
 plot_model(model, to_file='v1.png')

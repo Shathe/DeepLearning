@@ -33,3 +33,31 @@ def ShatheNet_v1(n_classes=256, weights=None):
         model.load_weights(weights)
     return model
 
+'''
+Use keras funcitonal
+
+# This returns a tensor
+inputs = Input(shape=(784,))
+
+# a layer instance is callable on a tensor, and returns a tensor
+x = Dense(64, activation='relu')(inputs)
+x = Dense(64, activation='relu')(x)
+predictions = Dense(10, activation='softmax')(x)
+
+# This creates a model that includes
+# the Input layer and three Dense layers
+model = Model(inputs=inputs, outputs=predictions)
+'''
+def ShatheNet_v2(n_classes=256, weights=None):
+        # This returns a tensor
+    inputs = Input(shape=(784,))
+
+    # a layer instance is callable on a tensor, and returns a tensor
+    x = Dense(64, activation='relu')(inputs)
+    x = Dense(64, activation='relu')(x)
+    predictions = Dense(10, activation='softmax')(x)
+
+    # This creates a model that includes
+    # the Input layer and three Dense layers
+    model = Model(inputs=inputs, outputs=predictions)
+    return model
