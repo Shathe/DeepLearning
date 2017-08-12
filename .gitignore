@@ -1,0 +1,8 @@
+./ShatheNet/Dataset
+./ShatheNet/256_classes_dataset
+./*/~
+./*/*/~
+./*/*/*/~
+./*/*/*.pyc
+./*/*.pyc
+./*.pyc

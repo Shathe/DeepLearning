@@ -4,7 +4,8 @@ This subproject is focused on learning more about convolutional neuroanal networ
 
 ## Dataset
 
-Yet to choose. ¿Imagenet? A classification one for sure.
+[Caltech-256 Object Category Dataset](http://authors.library.caltech.edu/7694/). A set of 256 object categories containing a total of 30607 images. 
+Its size is 1GB. I use this dataset instead of Iamgenet due to its size which makes the development and test easier and faster.
 
 
 ## Progression
@@ -13,7 +14,7 @@ Yet to choose. ¿Imagenet? A classification one for sure.
 | ------------- |:-------------:| -----:|
 | [1.0]()referenciar commit*      | First simple approach. [arquitecture]()refeernce image* | 0.0 |
 |       |  | 0.0 |
-|Inception-v3     |  Not finetuned | 0.0 |
+|Inception-v3     |  Not finetuned. 224x224 input. Image augmentation | 0.0 |
 |Resnet-50      | Not finetuned | 0.0 |
 ## Versions
 1.0: Explicar que tiene*
@@ -27,6 +28,7 @@ Yet to choose. ¿Imagenet? A classification one for sure.
 - [ ] Try different regularizations(L2, droput, Batch nrom, gradient checking..)*
 - [ ] Try different activations*
 - [ ] Try different optimizers / function losses*
+- [ ] Try GlobalAveragePooling2D*
 - [ ] Try using other hyperparametres, like weight decay and its different types (use  keras scheduler).
 - [ ] Use some residual conections (See DenseNet and Resnet and Inception arquitectures and theri keras implementations in order to learn why and how)
 
