@@ -1,5 +1,5 @@
-./ShatheNet/Dataset
-./ShatheNet/256_classes_dataset
+./ShatheNet/Dataset/*
+./ShatheNet/256_classes_dataset/*
 ./*/~
 ./*/*/~
 ./*/*/*/~
