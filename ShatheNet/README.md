@@ -12,12 +12,13 @@ Its size is 1GB. I use this dataset instead of Iamgenet due to its size which ma
 
 | Version        | Notes           | Accuracy  |
 | ------------- |:-------------:| -----:|
-| [1.0]()referenciar commit*      | First simple approach. [arquitecture]()refeernce image* | 0.0 |
+| [1.0](https://github.com/Shathe/DeepLearning/tree/master/ShatheNet/images/v1.png)     | First simple approach | ¿?% |
 |       |  | 0.0 |
-|Inception-v3     |  Not finetuned. 224x224 input. Image augmentation | 0.0 |
-|Resnet-50      | Not finetuned | 0.0 |
+|Inception-v3     |  Not finetuned. Image augmentation. 30 epochs | ¿?% |
+
 ## Versions
-1.0: Explicar que tiene*
+[ShatheNet_v1](https://github.com/Shathe/DeepLearning/tree/master/ShatheNet/models/ShatheNet.png#ShatheNet_v1)
+    
 ## Things yet to be tried
 
 - [ ] Mix and add different convolutions
