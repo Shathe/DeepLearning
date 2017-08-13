@@ -15,7 +15,7 @@ Its size is 1GB. I use this dataset instead of Iamgenet due to its size which ma
 | Version        | Notes           | Params           | Cifar-10 Accuracy |
 | ------------- |:-------------:|:-------------:| -----:|
 | [1.0](https://github.com/Shathe/DeepLearning/tree/master/ShatheNet/images/v1_0.png)     | First simple approach   | 17K   | 59% |
-| [1.1](https://github.com/Shathe/DeepLearning/tree/master/ShatheNet/images/v1_1.png)     | + convs. + Params. ImAug  | 930K   | currently running% |
+| [1.1](https://github.com/Shathe/DeepLearning/tree/master/ShatheNet/images/v1_1.png)     | + convs. + Params. ImAug  | 930K   | currently running |
 | [1.2](https://github.com/Shathe/DeepLearning/tree/master/ShatheNet/images/v1_2.png)     | - convs. +Params. ImAug  | 1.25M   | 74% |
 | [1.3](https://github.com/Shathe/DeepLearning/tree/master/ShatheNet/images/v1_3.png)     | + convs. +Params. ImAug  | 1.74M   | currently running |
 |Inception-v3     |  Not finetuned. ImAug |  24 M|  91% |
@@ -36,7 +36,7 @@ ImAug=Image augmentation
 - [ ] Try different weight inizializations*
 - [ ] Try different regularizations(L2, droput, Batch nrom, gradient checking..)*
 - [ ] Try different activations*
-- [x] Striding vs pooling: V1.1: with striding: __%, with pooling: __%
+- [x] Striding vs pooling: V1.1: with striding: _%, with pooling: _%
 - [ ] Try different optimizers / function losses*
 - [ ] Try GlobalAveragePooling2D*
 - [ ] Try using other hyperparametres, like weight decay and its different types (use  keras scheduler).
