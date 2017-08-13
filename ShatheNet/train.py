@@ -17,9 +17,9 @@ args = parser.parse_args()
 train_data_dir = args.dataFolder + 'train'
 validation_data_dir = args.dataFolder + 'test'
 
-epochs = 65
+epochs = 75
 batch_size = 32
-learning_rate = 0.001
+learning_rate = 0.0001
 
 
 # this is the augmentation configuration we will use for training
@@ -46,10 +46,10 @@ nb_train_samples = train_generator.samples
 nb_validation_samples = validation_generator.samples 
 
 #model = InceptionModel(input_tensor=input_tensor, n_classes=n_classes, weights=None, include_top=False)
-model = ShatheNet_v1_2(n_classes=n_classes)
+model = ShatheNet_v1_3(n_classes=n_classes)
 
 model.summary() 
-plot_model(model, to_file='v1_2.png')
+plot_model(model, to_file='v1_3.png')
 
 # compile the model (should be done *after* setting layers to non-trainable)
 # model.compile(optimizer='rmsprop', loss='categorical_crossentropy')

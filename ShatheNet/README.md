@@ -15,26 +15,28 @@ Its size is 1GB. I use this dataset instead of Iamgenet due to its size which ma
 | Version        | Notes           | Params           | Cifar-10 Accuracy |
 | ------------- |:-------------:|:-------------:| -----:|
 | [1.0](https://github.com/Shathe/DeepLearning/tree/master/ShatheNet/images/v1_0.png)     | First simple approach   | 17K   | 59% |
-| [1.1](https://github.com/Shathe/DeepLearning/tree/master/ShatheNet/images/v1_1.png)     | + convs. +Params. ImAug  | 1.25M   | 74% |
-| [1.2](https://github.com/Shathe/DeepLearning/tree/master/ShatheNet/images/v1_2.png)     | + convs. = Params. ImAug  | 2M   | __% |
+| [1.1](https://github.com/Shathe/DeepLearning/tree/master/ShatheNet/images/v1_1.png)     | + convs. + Params. ImAug  | 930K   | currently running% |
+| [1.2](https://github.com/Shathe/DeepLearning/tree/master/ShatheNet/images/v1_2.png)     | - convs. +Params. ImAug  | 1.25M   | 74% |
+| [1.3](https://github.com/Shathe/DeepLearning/tree/master/ShatheNet/images/v1_3.png)     | + convs. +Params. ImAug  | 1.74M   | currently running |
 |Inception-v3     |  Not finetuned. ImAug |  24 M|  91% |
 
 ImAug=Image augmentation
 ## Versions
 [ShatheNet_v1.0](https://github.com/Shathe/DeepLearning/tree/master/ShatheNet/models/ShatheNet.py#L10)
 [ShatheNet_v1.1](https://github.com/Shathe/DeepLearning/tree/master/ShatheNet/models/ShatheNet.py#L32)
-[ShatheNet_v1.2](https://github.com/Shathe/DeepLearning/tree/master/ShatheNet/models/ShatheNet.py#58)
+[ShatheNet_v1.2](https://github.com/Shathe/DeepLearning/tree/master/ShatheNet/models/ShatheNet.py#65)
+[ShatheNet_v1.3](https://github.com/Shathe/DeepLearning/tree/master/ShatheNet/models/ShatheNet.py#92)
     
 ## Things yet to be tried
 
-- [x] Mix and add different convolutions -> V1.2
+- [x] Mix and add different convolutions -> V1.3
 - [ ] Normalize the inputs (Load with numpy so I can use .fit() instead .fitFromFlow()?)
 - [ ] image augmentation
 - [ ] Add batch normalization*
 - [ ] Try different weight inizializations*
 - [ ] Try different regularizations(L2, droput, Batch nrom, gradient checking..)*
 - [ ] Try different activations*
-- [ ] Striding vs pooling
+- [x] Striding vs pooling: V1.1: with striding: __%, with pooling: __%
 - [ ] Try different optimizers / function losses*
 - [ ] Try GlobalAveragePooling2D*
 - [ ] Try using other hyperparametres, like weight decay and its different types (use  keras scheduler).

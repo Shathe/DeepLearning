@@ -32,6 +32,39 @@ def ShatheNet_v1_0(n_classes=256, weights=None):
 def ShatheNet_v1_1(n_classes=256, weights=None):
     model = Sequential()
     input_shape = (299, 299, 3)
+    model.add(Conv2D(32, (5, 5), padding='same', activation='relu', input_shape=input_shape,
+                     kernel_initializer='truncated_normal'))
+    model.add(Conv2D(32, (5, 5), padding='same', activation='relu', kernel_initializer='truncated_normal'))
+    model.add(Conv2D(32, (5, 5), padding='same', activation='relu', kernel_initializer='truncated_normal'))
+    model.add(MaxPooling2D(pool_size=(2, 2)))
+    model.add(Conv2D(64, (3, 3), padding='same', activation='relu', kernel_initializer='truncated_normal'))
+    model.add(Conv2D(64, (3, 3), padding='same', activation='relu', kernel_initializer='truncated_normal'))
+    model.add(Conv2D(64, (3, 3), padding='same', activation='relu', kernel_initializer='truncated_normal'))
+    model.add(MaxPooling2D(pool_size=(2, 2)))
+    model.add(Conv2D(64, (3, 3), padding='same', activation='relu', kernel_initializer='truncated_normal'))
+    model.add(MaxPooling2D(pool_size=(2, 2)))
+    model.add(Conv2D(64, (5, 5), padding='same', activation='relu', kernel_initializer='truncated_normal'))
+    model.add(Conv2D(64, (5, 5), padding='same', activation='relu', kernel_initializer='truncated_normal'))
+    model.add(MaxPooling2D(pool_size=(2, 2)))
+    model.add(Conv2D(64, (5, 5), padding='same', activation='relu', kernel_initializer='truncated_normal'))
+    model.add(Conv2D(128, (3, 3), padding='same', activation='relu', kernel_initializer='truncated_normal'))
+    model.add(MaxPooling2D(pool_size=(2, 2)))
+    model.add(Conv2D(128, (3, 3), padding='same', activation='relu', kernel_initializer='truncated_normal'))
+    model.add(Conv2D(128, (3, 3), padding='same', activation='relu', kernel_initializer='truncated_normal'))
+    model.add(Conv2D(128, (3, 3), padding='same', activation='relu', kernel_initializer='truncated_normal'))
+    model.add(MaxPooling2D(pool_size=(2, 2)))
+    model.add(Flatten())
+    model.add(Dense(512, activation='relu'))
+    model.add(Dense(n_classes))
+    model.add(Activation('softmax'))
+    if weights:
+        model.load_weights(weights)
+    return model
+
+
+def ShatheNet_v1_2(n_classes=256, weights=None):
+    model = Sequential()
+    input_shape = (299, 299, 3)
     model.add(Conv2D(32, (7, 7), padding='same', activation='relu', input_shape=input_shape,
                      kernel_initializer='truncated_normal', strides=(2, 2)))
     model.add(Conv2D(32, (7, 7), padding='same', kernel_initializer='truncated_normal'))
@@ -55,29 +88,30 @@ def ShatheNet_v1_1(n_classes=256, weights=None):
         model.load_weights(weights)
     return model
 
-def ShatheNet_v1_2(n_classes=256, weights=None):
+
+def ShatheNet_v1_3(n_classes=256, weights=None):
     model = Sequential()
     input_shape = (299, 299, 3)
-    model.add(Conv2D(32, (5, 5), padding='same', activation='relu', input_shape=input_shape,
+    model.add(Conv2D(32, (5, 5), padding='valid', activation='relu', input_shape=input_shape,
                      kernel_initializer='truncated_normal'))
-    model.add(Conv2D(32, (5, 5), padding='same', activation='relu', kernel_initializer='truncated_normal'))
-    model.add(Conv2D(32, (5, 5), padding='same', activation='relu', kernel_initializer='truncated_normal'))
+    model.add(Conv2D(32, (5, 5), padding='valid', kernel_initializer='truncated_normal'))
+    model.add(Conv2D(32, (3, 3), padding='valid', kernel_initializer='truncated_normal'))
     model.add(MaxPooling2D(pool_size=(2, 2)))
-    model.add(Conv2D(64, (3, 3), padding='same', activation='relu', kernel_initializer='truncated_normal'))
-    model.add(Conv2D(64, (3, 3), padding='same', activation='relu', kernel_initializer='truncated_normal'))
-    model.add(Conv2D(64, (3, 3), padding='same', activation='relu', kernel_initializer='truncated_normal'))
+    model.add(Conv2D(64, (5, 5), padding='valid', activation='relu', kernel_initializer='truncated_normal'))
+    model.add(Conv2D(64, (5, 5), padding='valid', activation='relu', kernel_initializer='truncated_normal'))
+    model.add(Conv2D(64, (3, 3), padding='valid', activation='relu', kernel_initializer='truncated_normal'))
     model.add(MaxPooling2D(pool_size=(2, 2)))
-    model.add(Conv2D(64, (3, 3), padding='same', activation='relu', kernel_initializer='truncated_normal'))
+    model.add(Conv2D(64, (3, 3), padding='valid', activation='relu', kernel_initializer='truncated_normal'))
+    model.add(Conv2D(64, (3, 3), padding='valid', activation='relu', kernel_initializer='truncated_normal'))
+    model.add(Conv2D(64, (3, 3), padding='valid', activation='relu', kernel_initializer='truncated_normal'))
     model.add(MaxPooling2D(pool_size=(2, 2)))
-    model.add(Conv2D(64, (5, 5), padding='same', activation='relu', kernel_initializer='truncated_normal'))
-    model.add(Conv2D(64, (5, 5), padding='same', activation='relu', kernel_initializer='truncated_normal'))
+    model.add(Conv2D(128, (3, 3), padding='valid', activation='relu', kernel_initializer='truncated_normal'))
+    model.add(Conv2D(128, (3, 3), padding='valid', activation='relu', kernel_initializer='truncated_normal'))
+    model.add(Conv2D(128, (3, 3), padding='valid', activation='relu', kernel_initializer='truncated_normal'))
     model.add(MaxPooling2D(pool_size=(2, 2)))
-    model.add(Conv2D(64, (5, 5), padding='same', activation='relu', kernel_initializer='truncated_normal'))
-    model.add(Conv2D(128, (3, 3), padding='same', activation='relu', kernel_initializer='truncated_normal'))
-    model.add(MaxPooling2D(pool_size=(2, 2)))
-    model.add(Conv2D(128, (3, 3), padding='same', activation='relu', kernel_initializer='truncated_normal'))
-    model.add(Conv2D(128, (3, 3), padding='same', activation='relu', kernel_initializer='truncated_normal'))
-    model.add(Conv2D(128, (3, 3), padding='same', activation='relu', kernel_initializer='truncated_normal'))
+    model.add(Conv2D(128, (3, 3), padding='valid', activation='relu', kernel_initializer='truncated_normal'))
+    model.add(Conv2D(128, (3, 3), padding='valid', activation='relu', kernel_initializer='truncated_normal'))
+    model.add(Conv2D(128, (3, 3), padding='valid', activation='relu', kernel_initializer='truncated_normal'))
     model.add(MaxPooling2D(pool_size=(2, 2)))
     model.add(Flatten())
     model.add(Dense(512, activation='relu'))
