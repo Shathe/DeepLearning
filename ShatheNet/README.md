@@ -11,13 +11,15 @@ Its size is 1GB. I use this dataset instead of Iamgenet due to its size which ma
 
 ## Progression
 
+
 | Version        | Notes           | Params           | Cifar-10 Accuracy |
 | ------------- |:-------------:|:-------------:| -----:|
-| [1.0](https://github.com/Shathe/DeepLearning/tree/master/ShatheNet/images/v1_0.png)     | First simple approach. 60 epochs  | 17K   | 59% |
-| [1.1](https://github.com/Shathe/DeepLearning/tree/master/ShatheNet/images/v1_1.png)     | First simple approach. Image augmentation. 70 epochs  | 1.25M   | 74% |
-| [1.2](https://github.com/Shathe/DeepLearning/tree/master/ShatheNet/images/v1_2.png)     | First simple approach. Image augmentation. 70 epochs  | 1.25M   | __% |
-|Inception-v3     |  Not finetuned. Image augmentation. 60 epochs |  24 M|  91% |
+| [1.0](https://github.com/Shathe/DeepLearning/tree/master/ShatheNet/images/v1_0.png)     | First simple approach   | 17K   | 59% |
+| [1.1](https://github.com/Shathe/DeepLearning/tree/master/ShatheNet/images/v1_1.png)     | + convs. +Params. ImAug  | 1.25M   | 74% |
+| [1.2](https://github.com/Shathe/DeepLearning/tree/master/ShatheNet/images/v1_2.png)     | + convs. = Params. ImAug  | 2M   | __% |
+|Inception-v3     |  Not finetuned. ImAug |  24 M|  91% |
 
+ImAug=Image augmentation
 ## Versions
 [ShatheNet_v1.0](https://github.com/Shathe/DeepLearning/tree/master/ShatheNet/models/ShatheNet.py#L10)
 [ShatheNet_v1.1](https://github.com/Shathe/DeepLearning/tree/master/ShatheNet/models/ShatheNet.py#L32)
