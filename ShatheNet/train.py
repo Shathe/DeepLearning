@@ -16,33 +16,11 @@ parser.add_argument("--dataFolder", help="folder where the images are going to b
 args = parser.parse_args()
 train_data_dir = args.dataFolder + 'train'
 validation_data_dir = args.dataFolder + 'test'
-nb_train_samples = 50000 
-nb_validation_samples = 10000 
 
-epochs = 30
-batch_size = 16
+epochs = 65
+batch_size = 32
 learning_rate = 0.001
 
-import os
-n_classes = 0
-
-for _, dirnames, _ in os.walk(train_data_dir):
-  # ^ this idiom means "we won't be using this value"
-    n_classes += len(dirnames)
-
-input_tensor = Input(shape=(299,299,3))  # this assumes K.image_data_format() == 'channels_first'
-
-model = InceptionModel(input_tensor=input_tensor, n_classes=n_classes, weights=None, include_top=False)
-#model = ShatheNet_v1(n_classes=n_classes)
-
-model.summary() 
-plot_model(model, to_file='v1.png')
-
-# compile the model (should be done *after* setting layers to non-trainable)
-# model.compile(optimizer='rmsprop', loss='categorical_crossentropy')
-
-adam = optimizers.adam(learning_rate)
-model.compile(loss='categorical_crossentropy', optimizer=adam, metrics=['accuracy'])
 
 # this is the augmentation configuration we will use for training
 train_datagen = ImageDataGenerator(rescale=1. / 255, shear_range=0.2, width_shift_range=0.15, height_shift_range=0.15, zoom_range=0.35, rotation_range=45)
@@ -61,6 +39,23 @@ validation_generator = test_datagen.flow_from_directory(validation_data_dir, tar
                                                         batch_size=(batch_size), class_mode='categorical', shuffle=True)
 
 # train the model on the new data for a few epochs
+
+
+n_classes = train_generator.num_class
+nb_train_samples = train_generator.samples 
+nb_validation_samples = validation_generator.samples 
+
+#model = InceptionModel(input_tensor=input_tensor, n_classes=n_classes, weights=None, include_top=False)
+model = ShatheNet_v1_2(n_classes=n_classes)
+
+model.summary() 
+plot_model(model, to_file='v1_2.png')
+
+# compile the model (should be done *after* setting layers to non-trainable)
+# model.compile(optimizer='rmsprop', loss='categorical_crossentropy')
+
+adam = optimizers.adam(learning_rate)
+model.compile(loss='categorical_crossentropy', optimizer=adam, metrics=['accuracy'])
 
 
 model.fit_generator(train_generator, steps_per_epoch=nb_train_samples // batch_size, epochs=epochs,
