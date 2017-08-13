@@ -19,9 +19,9 @@ Its size is 1GB. I use this dataset instead of Iamgenet due to its size which ma
 |Inception-v3     |  Not finetuned. Image augmentation. 60 epochs |  24 M|  91% |
 
 ## Versions
-[ShatheNet_v1.0](https://github.com/Shathe/DeepLearning/tree/master/ShatheNet/models/ShatheNet.py#ShatheNet_v1_0)
-[ShatheNet_v1.1](https://github.com/Shathe/DeepLearning/tree/master/ShatheNet/models/ShatheNet.py#ShatheNet_v1_1)
-[ShatheNet_v1.2](https://github.com/Shathe/DeepLearning/tree/master/ShatheNet/models/ShatheNet.py#ShatheNet_v1_2)
+[ShatheNet_v1.0](https://github.com/Shathe/DeepLearning/tree/master/ShatheNet/models/ShatheNet.py#L10)
+[ShatheNet_v1.1](https://github.com/Shathe/DeepLearning/tree/master/ShatheNet/models/ShatheNet.py#L32)
+[ShatheNet_v1.2](https://github.com/Shathe/DeepLearning/tree/master/ShatheNet/models/ShatheNet.py#58)
     
 ## Things yet to be tried
 
