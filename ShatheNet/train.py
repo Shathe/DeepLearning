@@ -9,7 +9,7 @@ from keras.callbacks import ModelCheckpoint
 from models.Inception import InceptionModel
 from models.ShatheNet import *
 from keras.utils import plot_model
-
+import numpy as np
 parser = argparse.ArgumentParser()
 parser.add_argument("--dataFolder", help="folder where the images are going to be saved")
 
@@ -17,19 +17,47 @@ args = parser.parse_args()
 train_data_dir = args.dataFolder + 'train'
 validation_data_dir = args.dataFolder + 'test'
 
-epochs = 75
+epochs = 100
 batch_size = 32
 learning_rate = 0.0001
 
 
+#load mean and std
+mean =  np.load("mean.npy")
+std =  np.load("std.npy")
+print(std.shape)
+print(std[20,20,1])
+
+#preprocessing_function
+def preproces(x=x):
+	# global mean
+	# global mean
+	print(x[1,1,1])
+    x -= mean
+    x /= std
+    print(x[1,1,1])
+
+    return x
+
+
+
+data_gen_args = dict(preprocessing_function=preproces,
+				    rotation_range=35,
+				    width_shift_range=0.15,
+				    height_shift_range=0.15,
+				    shear_range=1.5,
+				    zoom_range=0.35,
+				    channel_shift_range=0.1,
+				    horizontal_flip=True,
+				    vertical_flip=True)
 # this is the augmentation configuration we will use for training
-train_datagen = ImageDataGenerator(rescale=1. / 255, shear_range=0.2, width_shift_range=0.15, height_shift_range=0.15, zoom_range=0.35, rotation_range=45)
+train_datagen = ImageDataGenerator(**data_gen_args)
 # Other options:rotation_range, height_shift_range, featurewise_center, vertical_flip, featurewise_std_normalization...
 # Also you can give a function as an argument to apply to every iamge
 
 
 # this is the augmentation configuration we will use for testing:
-test_datagen = ImageDataGenerator(rescale=1. / 255)
+test_datagen = ImageDataGenerator(preprocessing_function=preproces)
 
 # Generator of images from the data folder
 train_generator = train_datagen.flow_from_directory(train_data_dir, target_size=(299, 299),
@@ -49,7 +77,7 @@ nb_validation_samples = validation_generator.samples
 model = ShatheNet_v1_3(n_classes=n_classes)
 
 model.summary() 
-plot_model(model, to_file='v1_3.png')
+# plot_model(model, to_file='v1_3.png')
 
 # compile the model (should be done *after* setting layers to non-trainable)
 # model.compile(optimizer='rmsprop', loss='categorical_crossentropy')
