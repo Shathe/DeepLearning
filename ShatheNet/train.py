@@ -23,8 +23,8 @@ learning_rate = 0.0001
 
 
 #load mean and std
-mean =  np.load("mean.npy")
-std =  np.load("std.npy")
+mean =  np.load("./Dataset/mean.npy")
+std =  np.load("/Dataset/std.npy")
 print(std.shape)
 print(std[20,20,1])
 
