@@ -24,7 +24,7 @@ learning_rate = 0.0001
 
 #load mean and std
 mean =  np.load("./Dataset/mean.npy")
-std =  np.load("/Dataset/std.npy")
+std =  np.load("./Dataset/std.npy")
 print(std.shape)
 print(std[20,20,1])
 
@@ -33,11 +33,11 @@ def preproces(x=x):
 	# global mean
 	# global mean
 	print(x[1,1,1])
-    x -= mean
-    x /= std
-    print(x[1,1,1])
+	x -= mean
+	x /= std
+	print(x[1,1,1])
 
-    return x
+	return x
 
 
 

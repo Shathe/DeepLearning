@@ -31,6 +31,6 @@ std = np.std(images, axis = 0, dtype=np.float16)
 std2=np.array(std, dtype=np.float16)
 #cv2.imwrite('std.png',std2)  with uint8
 std2 += 1e-7
-print("Saving...")
+
 np.save("std", std2)
 np.save("mean", mean2)
