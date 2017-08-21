@@ -16,11 +16,12 @@ Its size is 1GB. I use this dataset instead of Iamgenet due to its size which ma
 | ------------- |:-------------:|:-------------:| -----:|
 | [1.0](https://github.com/Shathe/DeepLearning/tree/master/ShatheNet/images/v1_0.png)     | First simple approach   | 17K   | 60% |
 | [1.1](https://github.com/Shathe/DeepLearning/tree/master/ShatheNet/images/v1_2.png)     | + convs. +Params. ImAug  | 1.25M   | 76% |
-| [1.2](https://github.com/Shathe/DeepLearning/tree/master/ShatheNet/images/v1_1.png)     | + convs. - Params. ImAug  | 930K   | 85% |
-| [1.3](https://github.com/Shathe/DeepLearning/tree/master/ShatheNet/images/v1_3.png)     | + convs. +Params. ImAug  | 1.74M   | currently running |
-|State-of-the-art    | Complex architectures. ImAug |  2 - 35 M|  91.5 - 96.5% |
+| [1.2](https://github.com/Shathe/DeepLearning/tree/master/ShatheNet/images/v1_1.png)     | + convs. - Params. ImAug. InNorm? | 930K   | 85%? |
+| [1.3](https://github.com/Shathe/DeepLearning/tree/master/ShatheNet/images/v1_3.png)     | + convs. +Params. ImAug  | 1.74M   | 85%? |
+|State-of-the-art    | Complex architectures. ImAug. InNorm? |  2 - 35 M|  91.5 - 96.5% |
 
 ImAug=Image augmentation
+InNorm=Input normalization
 ## Versions
 [ShatheNet_v1.0](https://github.com/Shathe/DeepLearning/tree/master/ShatheNet/models/ShatheNet.py#L10)
 [ShatheNet_v1.1](https://github.com/Shathe/DeepLearning/tree/master/ShatheNet/models/ShatheNet.py#L32)

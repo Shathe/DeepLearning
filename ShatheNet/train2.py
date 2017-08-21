@@ -22,24 +22,10 @@ batch_size = 32
 learning_rate = 0.0001
 
 
-#load mean and std
-mean =  np.load("./Dataset/mean.npy")
-std =  np.load("./Dataset/std.npy")
-print(std.shape)
 
 
 
-#preprocessing_function
-def preproces(x):
-	# global mean
-	# global mean
-	x -= mean
-	x /= std
-	return x
-
-
-
-data_gen_args = dict(preprocessing_function=preproces,
+data_gen_args = dict(rescale=1./255,
 				    rotation_range=35,
 				    width_shift_range=0.15,
 				    height_shift_range=0.15,
@@ -55,7 +41,7 @@ train_datagen = ImageDataGenerator(**data_gen_args)
 
 
 # this is the augmentation configuration we will use for testing:
-test_datagen = ImageDataGenerator(preprocessing_function=preproces)
+test_datagen = ImageDataGenerator(rescale=1./255)
 
 # Generator of images from the data folder
 train_generator = train_datagen.flow_from_directory(train_data_dir, target_size=(192, 192),

@@ -27,14 +27,13 @@ mean =  np.load("./Dataset/mean.npy")
 std =  np.load("./Dataset/std.npy")
 print(std.shape)
 
-
-
 #preprocessing_function
 def preproces(x):
 	# global mean
 	# global mean
 	x -= mean
 	x /= std
+
 	return x
 
 
@@ -72,7 +71,7 @@ nb_train_samples = train_generator.samples
 nb_validation_samples = validation_generator.samples 
 
 #model = InceptionModel(input_tensor=input_tensor, n_classes=n_classes, weights=None, include_top=False)
-model = ShatheNet_v1_3(n_classes=n_classes)
+model = ShatheNet_v1_2(n_classes=n_classes)
 
 model.summary() 
 # plot_model(model, to_file='v1_3.png')
