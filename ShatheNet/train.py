@@ -19,7 +19,7 @@ validation_data_dir = args.dataFolder + 'test'
 
 epochs = 400
 batch_size = 32
-learning_rate = 0.0001
+learning_rate = 0.001
 
 
 #load mean and std
@@ -36,6 +36,7 @@ def preproces(x):
 	x -= mean
 	x /= std
 	return x
+# [ 128.75558472  136.1335907   140.86721802]
 
 
 
@@ -58,10 +59,10 @@ train_datagen = ImageDataGenerator(**data_gen_args)
 test_datagen = ImageDataGenerator(preprocessing_function=preproces)
 
 # Generator of images from the data folder
-train_generator = train_datagen.flow_from_directory(train_data_dir, target_size=(192, 192),
+train_generator = train_datagen.flow_from_directory(train_data_dir, target_size=(224, 224),
                                                     batch_size=batch_size, class_mode='categorical', shuffle=True)
 
-validation_generator = test_datagen.flow_from_directory(validation_data_dir, target_size=(192, 192),
+validation_generator = test_datagen.flow_from_directory(validation_data_dir, target_size=(224, 224),
                                                         batch_size=(batch_size), class_mode='categorical', shuffle=True)
 
 # train the model on the new data for a few epochs
@@ -80,7 +81,7 @@ model.summary()
 # compile the model (should be done *after* setting layers to non-trainable)
 # model.compile(optimizer='rmsprop', loss='categorical_crossentropy')
 
-adam = optimizers.adam(learning_rate)
+adam = optimizers.adam(learning_rate,  decay=0.0001) #decay 1/(1+decay*epochs*batches_per_epoch)*lr
 model.compile(loss='categorical_crossentropy', optimizer=adam, metrics=['accuracy'])
 
 

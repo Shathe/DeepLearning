@@ -10,15 +10,26 @@ Its size is 1GB. I use this dataset instead of Iamgenet due to its size which ma
 
 
 ## Progression
-
+### Cifar-10
 
 | Version        | Notes           | Params           | Cifar-10 Accuracy |
 | ------------- |:-------------:|:-------------:| -----:|
 | [1.0](https://github.com/Shathe/DeepLearning/tree/master/ShatheNet/images/v1_0.png)     | First simple approach   | 17K   | 60% |
 | [1.1](https://github.com/Shathe/DeepLearning/tree/master/ShatheNet/images/v1_2.png)     | + convs. +Params. ImAug  | 1.25M   | 76% |
-| [1.2](https://github.com/Shathe/DeepLearning/tree/master/ShatheNet/images/v1_1.png)     | + convs. - Params. ImAug. InNorm? | 930K   | 85%? |
-| [1.3](https://github.com/Shathe/DeepLearning/tree/master/ShatheNet/images/v1_3.png)     | + convs. +Params. ImAug  | 1.74M   | 85%? |
-|State-of-the-art    | Complex architectures. ImAug. InNorm? |  2 - 35 M|  91.5 - 96.5% |
+| [1.2](https://github.com/Shathe/DeepLearning/tree/master/ShatheNet/images/v1_1.png)     | + convs. - Params. ImAug. InNorm? | 930K   | 83% |
+| [1.3](https://github.com/Shathe/DeepLearning/tree/master/ShatheNet/images/v1_3.png)     | + convs. +Params. ImAug  | 1.74M   | 86% |
+|State-of-the-art    | Complex architectures. ImAug. InNorm |  2 - 35 M|  91.5 - 96.5% |
+
+ImAug=Image augmentation
+InNorm=Input normalization
+
+### Caltech-256
+
+| Version        | Notes           | Params           | Cifar-10 Accuracy |
+| ------------- |:-------------:|:-------------:| -----:|
+| [1.3](https://github.com/Shathe/DeepLearning/tree/master/ShatheNet/images/v1_3.png)     |   | 1.74M   |  |
+| [2.0]()     |    |  | |
+|State-of-the-art    | Complex architectures. ImAug. InNorm |  2 - 35 M|   |
 
 ImAug=Image augmentation
 InNorm=Input normalization
@@ -49,10 +60,8 @@ InNorm=Input normalization
 Striding vs pooling: Striding takes less computation. Pooling takes to converge somewhat earlier. Poolings tends to get 1% more accuracy.
 
 ## Things to learn
-- [ ] [Standford videos course](https://www.youtube.com/watch?v=vT1JzLTH4G4&t=54s) 3/16 watched 
-- [ ] Why do they need non-linear activations functions?
-- [ ] Backpropagation how it really works
-- [ ] About GRUs LSTM..
+- [ ] [Standford videos course](https://www.youtube.com/watch?v=vT1JzLTH4G4&t=54s) 4/16 watched 
+
 
 
 ## My notes
