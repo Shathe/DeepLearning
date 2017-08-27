@@ -1,14 +1,9 @@
 import argparse
 
-from keras import optimizers
-from keras.applications.inception_v3 import InceptionV3
-from keras.layers import Dense, GlobalAveragePooling2D, Input
-from keras.models import Model
-from keras.preprocessing.image import ImageDataGenerator
-from keras.callbacks import ModelCheckpoint
+from tensorflow.contrib.keras import optimizers, layers, models, callbacks, utils, preprocessing
 from models.Inception import InceptionModel
 from models.ShatheNet import *
-from keras.utils import plot_model
+from models.ShatheNet_v2 import *
 import numpy as np
 parser = argparse.ArgumentParser()
 parser.add_argument("--dataFolder", help="folder where the images are going to be saved")
@@ -36,7 +31,8 @@ def preproces(x):
 	x -= mean
 	x /= std
 	return x
-# [ 128.75558472  136.1335907   140.86721802]
+# [ 116.44942474  127.21828461  129.72529602]
+
 
 
 
@@ -50,19 +46,19 @@ data_gen_args = dict(preprocessing_function=preproces,
 				    horizontal_flip=True,
 				    vertical_flip=True)
 # this is the augmentation configuration we will use for training
-train_datagen = ImageDataGenerator(**data_gen_args)
+train_datagen = preprocessing.image.ImageDataGenerator(**data_gen_args)
 # Other options:rotation_range, height_shift_range, featurewise_center, vertical_flip, featurewise_std_normalization...
 # Also you can give a function as an argument to apply to every iamge
 
 
 # this is the augmentation configuration we will use for testing:
-test_datagen = ImageDataGenerator(preprocessing_function=preproces)
+test_datagen = preprocessing.image.ImageDataGenerator(preprocessing_function=preproces)
 
 # Generator of images from the data folder
-train_generator = train_datagen.flow_from_directory(train_data_dir, target_size=(224, 224),
+train_generator = train_datagen.flow_from_directory(train_data_dir, target_size=(192, 192),
                                                     batch_size=batch_size, class_mode='categorical', shuffle=True)
 
-validation_generator = test_datagen.flow_from_directory(validation_data_dir, target_size=(224, 224),
+validation_generator = test_datagen.flow_from_directory(validation_data_dir, target_size=(192, 192),
                                                         batch_size=(batch_size), class_mode='categorical', shuffle=True)
 
 # train the model on the new data for a few epochs
@@ -73,15 +69,16 @@ nb_train_samples = train_generator.samples
 nb_validation_samples = validation_generator.samples 
 
 #model = InceptionModel(input_tensor=input_tensor, n_classes=n_classes, weights=None, include_top=False)
-model = ShatheNet_v1_3(n_classes=n_classes)
+model = ShatheNet_v2_0(n_classes=n_classes)
 
 model.summary() 
-# plot_model(model, to_file='v1_3.png')
+utils.plot_model(model, to_file='v2.png')
+
 
 # compile the model (should be done *after* setting layers to non-trainable)
 # model.compile(optimizer='rmsprop', loss='categorical_crossentropy')
 
-adam = optimizers.adam(learning_rate,  decay=0.0001) #decay 1/(1+decay*epochs*batches_per_epoch)*lr
+adam = optimizers.Adam(learning_rate,  decay=0.0001) #decay 1/(1+decay*epochs*batches_per_epoch)*lr
 model.compile(loss='categorical_crossentropy', optimizer=adam, metrics=['accuracy'])
 
 
@@ -92,3 +89,4 @@ score = model.evaluate_generator(validation_generator, nb_validation_samples)
 #model.save('my_model_final.h5')
 print('Test loss:', score[0])
 print('Test accuracy:', score[1])
+

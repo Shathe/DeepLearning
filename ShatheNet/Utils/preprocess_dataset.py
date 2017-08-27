@@ -8,8 +8,8 @@ TRAIN_PRCNT= 0.77
 TEST_PATH = "test/"
 TRAIN_PATH = "train/"
 
-n_training_samples = 23493
-dimension = (224, 224)
+n_training_samples = 50000
+dimension = (192, 192)
 channels = 3
 join = (n_training_samples,) + dimension + (channels,) 
 images = np.zeros(join, dtype=np.uint8)

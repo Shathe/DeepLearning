@@ -48,10 +48,12 @@ InNorm=Input normalization
 - [ ] Try different weight inizializations*
 - [ ] Try different regularizations(L2, droput, Batch nrom, gradient checking..)*
 - [ ] Try different activations*
+- [ ] Mean substraction 3 channels vs pixel level
 - [ ] Striding vs pooling on VGG16
 - [ ] Try different optimizers / function losses*
 - [ ] Try GlobalAveragePooling2D*
 - [ ] Try using other hyperparametres, like weight decay and its different types (use  keras scheduler).
+- [ ] Try to join image information with other type of information (multimodal)
 - [ ] [Importance sampling](http://idiap.ch/~katharas/importance-sampling/)
 - [ ] Use some residual conections (See DenseNet and Resnet and Inception arquitectures and theri keras implementations in order to learn why and how)
 
