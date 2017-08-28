@@ -12,9 +12,9 @@ args = parser.parse_args()
 train_data_dir = args.dataFolder + 'train'
 validation_data_dir = args.dataFolder + 'test'
 
-epochs = 400
-batch_size = 32
-learning_rate = 0.001
+epochs = 600
+batch_size = 64
+learning_rate = 0.00015
 
 
 #load mean and std
@@ -69,16 +69,16 @@ nb_train_samples = train_generator.samples
 nb_validation_samples = validation_generator.samples 
 
 #model = InceptionModel(input_tensor=input_tensor, n_classes=n_classes, weights=None, include_top=False)
-model = ShatheNet_v2_0(n_classes=n_classes)
+model = ShatheNet_v2_3(n_classes=n_classes)
 
 model.summary() 
-utils.plot_model(model, to_file='v2.png')
+# utils.plot_model(model, to_file='v2.png')
 
 
 # compile the model (should be done *after* setting layers to non-trainable)
 # model.compile(optimizer='rmsprop', loss='categorical_crossentropy')
 
-adam = optimizers.Adam(learning_rate,  decay=0.0001) #decay 1/(1+decay*epochs*batches_per_epoch)*lr
+adam = optimizers.Adam(learning_rate) # decay=0.0001? decay 1/(1+decay*epochs*batches_per_epoch)*lr
 model.compile(loss='categorical_crossentropy', optimizer=adam, metrics=['accuracy'])
 
 

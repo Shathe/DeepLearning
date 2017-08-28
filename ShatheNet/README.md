@@ -9,7 +9,7 @@ The other dataset I will work with is [Caltech-256 Object Category Dataset](http
 Its size is 1GB. I use this dataset instead of Iamgenet due to its size which makes the development and test easier and faster.
 
 
-## Progression
+## Comparisons
 ### Cifar-10
 
 | Version        | Notes           | Params           | Cifar-10 Accuracy |
@@ -18,40 +18,36 @@ Its size is 1GB. I use this dataset instead of Iamgenet due to its size which ma
 | [1.1](https://github.com/Shathe/DeepLearning/tree/master/ShatheNet/images/v1_2.png)     | + convs. +Params. ImAug  | 1.25M   | 76% |
 | [1.2](https://github.com/Shathe/DeepLearning/tree/master/ShatheNet/images/v1_1.png)     | + convs. - Params. ImAug. InNorm? | 930K   | 83% |
 | [1.3](https://github.com/Shathe/DeepLearning/tree/master/ShatheNet/images/v1_3.png)     | + convs. +Params. ImAug  | 1.74M   | 86% |
+| [2.0]()     |   |    | wait to 	convergence |
+| [2.1]()     |   |    | wait to 	convergence |
 |State-of-the-art    | Complex architectures. ImAug. InNorm |  2 - 35 M|  91.5 - 96.5% |
 
 ImAug=Image augmentation
 InNorm=Input normalization
 
-### Caltech-256
-
-| Version        | Notes           | Params           | Cifar-10 Accuracy |
-| ------------- |:-------------:|:-------------:| -----:|
-| [1.3](https://github.com/Shathe/DeepLearning/tree/master/ShatheNet/images/v1_3.png)     |   | 1.74M   |  |
-| [2.0]()     |    |  | |
-|State-of-the-art    | Complex architectures. ImAug. InNorm |  2 - 35 M|   |
-
-ImAug=Image augmentation
-InNorm=Input normalization
-## Versions
-[ShatheNet_v1.0](https://github.com/Shathe/DeepLearning/tree/master/ShatheNet/models/ShatheNet.py#L10)
-[ShatheNet_v1.1](https://github.com/Shathe/DeepLearning/tree/master/ShatheNet/models/ShatheNet.py#L32)
-[ShatheNet_v1.2](https://github.com/Shathe/DeepLearning/tree/master/ShatheNet/models/ShatheNet.py#59)
-[ShatheNet_v1.3](https://github.com/Shathe/DeepLearning/tree/master/ShatheNet/models/ShatheNet.py#94)
+### Batch normalization 
+Version__ used to simplify and speed up the process.
+### Preprocess
+### Inizializers
+### Regularizations
+### Activations
+### Optimizers
+### Pooling
+### Stride vs Pool
     
 ## Things yet to be tried
 
 - [x] Mix and add different convolutions -> V1.3
 - [x] Normalize inputs -> [get mean and std](https://github.com/Shathe/DeepLearning/tree/master/ShatheNet/Utils/preprocess_dataset.py) and [apply preprocess](https://github.com/Shathe/DeepLearning/tree/master/ShatheNet/train.py)
 - [x] image augmentation
-- [ ] Add batch normalization*
-- [ ] Try different weight inizializations*
-- [ ] Try different regularizations(L2, droput, Batch nrom, gradient checking..)*
-- [ ] Try different activations*
-- [ ] Mean substraction 3 channels vs pixel level
-- [ ] Striding vs pooling on VGG16
-- [ ] Try different optimizers / function losses*
-- [ ] Try GlobalAveragePooling2D*
+- [ ] Try Batch normalization after Relu instead of before
+- [ ] Try not to preprocess (because Batch norm) only x/255 - 0.5 vs Mean substraction 3 channels vs pixel level
+- [ ] Compare this inizializers: truncated_normal, lecun_normal, glorot_uniform, VarianceScaling, he_normal, he_uniform
+- [ ] Try different regularizations: conv2D:  kernel_regularizer=l2(weight_decay), l1_l2, dropouts (0.2/0.5) and for BatcNorm : gamma_regularizer=l2(weight_decay),    beta_regularizer=l2(weight_decay), 
+- [ ] Try different activations: relu, selu, and (advanced_activations: LeakyReLU, PReLU, ThresholdedReLU)
+- [ ] Try different optimizers: Compare speed and accuracy: Adam, SGD, RMSprop, Nadam, Adamax
+- [ ] AveragePooling vs MaxPool (intermediate pools) and GlobalAveragePool vs GlobalMaxPool vs Maxpool(last Pool)
+- [ ] Striding vs pooling
 - [ ] Try using other hyperparametres, like weight decay and its different types (use  keras scheduler).
 - [ ] Try to join image information with other type of information (multimodal)
 - [ ] [Importance sampling](http://idiap.ch/~katharas/importance-sampling/)
@@ -68,7 +64,6 @@ Striding vs pooling: Striding takes less computation. Pooling takes to converge 
 
 ## My notes
 
-Use the [functional keras API](https://keras.io/getting-started/functional-api-guide/).
 May be show some kernels in order to see wat is learning?
 Try multi-ipunt?(concatenating them in some convos with the same size or seing how)
 (concatenations have to be the same size, that's why DenseNet did not use pools and use zeropading-1 in the dense blocks)
