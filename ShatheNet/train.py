@@ -23,7 +23,6 @@ std =  np.load("./Dataset/std.npy")
 print(std.shape)
 
 
-
 #preprocessing_function
 def preproces(x):
 	# global mean
@@ -69,10 +68,10 @@ nb_train_samples = train_generator.samples
 nb_validation_samples = validation_generator.samples 
 
 #model = InceptionModel(input_tensor=input_tensor, n_classes=n_classes, weights=None, include_top=False)
-model = ShatheNet_v2_3(n_classes=n_classes)
+model = ShatheNet_v2(n_classes=n_classes)
 
 model.summary() 
-# utils.plot_model(model, to_file='v2.png')
+utils.plot_model(model, to_file='v2.png')
 
 
 # compile the model (should be done *after* setting layers to non-trainable)

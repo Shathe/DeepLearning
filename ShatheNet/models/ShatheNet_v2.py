@@ -1,129 +1,37 @@
 from tensorflow.contrib.keras  import backend as K
 
 from tensorflow.contrib.keras import optimizers, layers, models, callbacks, utils, preprocessing
-
+import glob
+import cv2
 import numpy as np
 
-def ShatheNet_v2_0(n_classes=256, weights=None):
+
+def ShatheNet_v2(n_classes=256, weights=None):
     # paddign same, filtros mas pequemos.. 
     input_shape = (192, 192, 3)
 
     inputs = layers.Input(shape=input_shape)
 
     # a layer instance is callable on a tensor, and returns a tensor
-    x = layers.Conv2D(16, (7, 7), padding='same', activation='relu', input_shape=input_shape,
-                     kernel_initializer='truncated_normal', strides=(6, 6))(inputs)
-    x = conv2d_bn(inputs, 16, 5, 5, padding='same', strides=(2, 2))
-    x = conv2d_bn(x, 32, 1, 1, padding='same', strides=(2, 2))
-    x = conv2d_bn(x, 32, 3, 3, padding='same', strides=(2, 2))
-    x = layers.MaxPooling2D((3, 3))(x)
-    x = dense_block(x, 8, 16)
-    x = layers.GlobalAveragePooling2D()(x)
-    # x = layers.Flatten()(x)
-    predictions = layers.Dense(n_classes, activation='softmax')(x)
-
-    # This creates a model that includes
-    # the Input layer and three Dense layers
-    model = models.Model(inputs=inputs, outputs=predictions)
-    if weights:
-        model.load_weights(weights)
-    return model
-
-def ShatheNet_v2_1(n_classes=256, weights=None):
-    # paddign same, filtros mas pequemos.. 
-    input_shape = (192, 192, 3)
-
-    inputs = layers.Input(shape=input_shape)
-
-    # a layer instance is callable on a tensor, and returns a tensor
-    x = layers.Conv2D(16, (7, 7), padding='same', activation='relu', input_shape=input_shape,
-                     kernel_initializer='truncated_normal', strides=(6, 6))(inputs)
-    x = conv2d_bn(inputs, 32, 5, 5, padding='same', strides=(2, 2))
-    x = conv2d_bn(x, 64, 1, 1, padding='same', strides=(1, 1))
-    x = conv2d_bn(x, 64, 3, 3, padding='same', strides=(1, 1))
+    x = conv2d_bn(inputs, 32, 3, 3, padding='valid', strides=(2, 2))
+    x = conv2d_bn(x, 64, 1, 1, padding='valid', strides=(1, 1))
+    x = conv2d_bn(x, 64, 3, 3, padding='valid', strides=(1, 1))
     x = layers.MaxPooling2D((2, 2))(x)
-    x = dense_block(x, 4, 16)
-    x = transition_block(x, 64)
-    x = dense_block(x, 8, 16)
-    x = transition_block(x, 64)
-    x = dense_block(x, 12, 24)
+    x = dense_block(x, 8, 32)
+    x = transition_block(x, 96)
+    x = dense_block(x, 12, 32)
     x = transition_block(x, 128)
+    x = dense_block(x, 20, 32) 
+    x = transition_block(x, 196)
     x = dense_block(x, 16, 32)
-    x = transition_block(x, 128)
-    x = dense_block(x, 12, 24)
     x = layers.GlobalAveragePooling2D()(x)
     # x = layers.Flatten()(x)
     predictions = layers.Dense(n_classes, activation='softmax')(x)
-
-    # This creates a model that includes
-    # the Input layer and three Dense layers
     model = models.Model(inputs=inputs, outputs=predictions)
+
     if weights:
         model.load_weights(weights)
     return model
-
-def ShatheNet_v2_2(n_classes=256, weights=None):
-    # paddign same, filtros mas pequemos.. 
-    input_shape = (192, 192, 3)
-
-    inputs = layers.Input(shape=input_shape)
-
-    # a layer instance is callable on a tensor, and returns a tensor
-    x = layers.Conv2D(16, (7, 7), padding='same', activation='relu', input_shape=input_shape,
-                     kernel_initializer='truncated_normal', strides=(6, 6))(inputs)
-    x = conv2d_bn(inputs, 32, 5, 5, padding='same', strides=(2, 2))
-    x = conv2d_bn(x, 64, 1, 1, padding='same', strides=(1, 1))
-    x = conv2d_bn(x, 64, 3, 3, padding='same', strides=(1, 1))
-    x = layers.MaxPooling2D((3, 3))(x)
-    x = dense_block(x, 6, 72)
-    x = transition_block(x, 64)
-    x = dense_block(x, 12, 72)
-    x = transition_block(x, 128)
-    x = dense_block(x, 8, 72)
-    x = layers.GlobalAveragePooling2D()(x)
-    # x = layers.Flatten()(x)
-    predictions = layers.Dense(n_classes, activation='softmax')(x)
-
-    # This creates a model that includes
-    # the Input layer and three Dense layers
-    model = models.Model(inputs=inputs, outputs=predictions)
-    if weights:
-        model.load_weights(weights)
-    return model
-def ShatheNet_v2_3(n_classes=256, weights=None):
-    # paddign same, filtros mas pequemos.. 
-    input_shape = (192, 192, 3)
-
-    inputs = layers.Input(shape=input_shape)
-
-    # a layer instance is callable on a tensor, and returns a tensor
-    x = layers.Conv2D(16, (7, 7), padding='same', activation='relu', input_shape=input_shape,
-                     kernel_initializer='truncated_normal', strides=(6, 6))(inputs)
-    x = conv2d_bn(inputs, 32, 5, 5, padding='same', strides=(2, 2))
-    x = conv2d_bn(x, 64, 1, 1, padding='same', strides=(1, 1))
-    x = conv2d_bn(x, 64, 3, 3, padding='same', strides=(1, 1))
-    x = layers.MaxPooling2D((2, 2))(x)
-    x = dense_block(x, 8, 24)
-    x = transition_block(x, 64)
-    x = dense_block(x, 12, 16)
-    x = transition_block(x, 128)
-    x = dense_block(x, 18, 16)
-    x = transition_block(x, 128)
-    x = dense_block(x, 12, 16)
-    x = layers.GlobalAveragePooling2D()(x)
-    # x = layers.Flatten()(x)
-    predictions = layers.Dense(n_classes, activation='softmax')(x)
-
-    # This creates a model that includes
-    # the Input layer and three Dense layers
-    model = models.Model(inputs=inputs, outputs=predictions)
-    if weights:
-        model.load_weights(weights)
-    return model
-
-
-
-
 
 
 
@@ -153,13 +61,13 @@ def node(x, nb_filter):
 
 def dense_block(x, nb_layers, nb_filter):
     #Hacer algo como contaenation imapres o pares para ver si se reduce el numero mucho?
-  
+    filter_augmenation_step = 4
     concatetation_of_inputs = x
     for i in range(nb_layers):
         next_node = node(concatetation_of_inputs, nb_filter)
         concatetation_of_inputs = layers.concatenate([concatetation_of_inputs, next_node], axis=3)
         previous_node = next_node
-        nb_filter = nb_filter + 8
+        nb_filter = nb_filter + filter_augmenation_step
 
 
     return concatetation_of_inputs #hacia la transition layer
@@ -171,13 +79,5 @@ def transition_block(x, nb_filter):
     return x
 
 
-
-    '''
-
-
-Cada bloque tiene distinto numero de laters por ejemplo 6,12,24,16 y el growth rate es lo que crece, empezando por 32 por ejemplo, en cada una de esas capas 
-
-Poner algo asi ya que son muchas capas , y no hacer lo de par o impar
-'''
 
 

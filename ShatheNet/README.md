@@ -15,15 +15,11 @@ Its size is 1GB. I use this dataset instead of Iamgenet due to its size which ma
 | Version        | Notes           | Params           | Cifar-10 Accuracy |
 | ------------- |:-------------:|:-------------:| -----:|
 | [1.0](https://github.com/Shathe/DeepLearning/tree/master/ShatheNet/images/v1_0.png)     | First simple approach   | 17K   | 60% |
-| [1.1](https://github.com/Shathe/DeepLearning/tree/master/ShatheNet/images/v1_2.png)     | + convs. +Params. ImAug  | 1.25M   | 76% |
-| [1.2](https://github.com/Shathe/DeepLearning/tree/master/ShatheNet/images/v1_1.png)     | + convs. - Params. ImAug. InNorm? | 930K   | 83% |
-| [1.3](https://github.com/Shathe/DeepLearning/tree/master/ShatheNet/images/v1_3.png)     | + convs. +Params. ImAug  | 1.74M   | 86% |
-| [2.0]()     |   |    | wait to 	convergence |
-| [2.1]()     |   |    | wait to 	convergence |
+| [1.1](https://github.com/Shathe/DeepLearning/tree/master/ShatheNet/images/v1_2.png)     | + convs. +Params  | 1.25M   | 76% |
+| [1.2](https://github.com/Shathe/DeepLearning/tree/master/ShatheNet/images/v1_1.png)     | + convs. - Params  | 930K   | 83% |
+| [1.3](https://github.com/Shathe/DeepLearning/tree/master/ShatheNet/images/v1_3.png)     | + convs. +Params  | 1.74M   | 86% |
+| [2.0](https://github.com/Shathe/DeepLearning/tree/master/ShatheNet/images/v2.png)       | Deeper. Inception modules. Residual conections. Very cool  |  16.25M  | wait to 	convergence |
 |State-of-the-art    | Complex architectures. ImAug. InNorm |  2 - 35 M|  91.5 - 96.5% |
-
-ImAug=Image augmentation
-InNorm=Input normalization
 
 ### Batch normalization 
 Version__ used to simplify and speed up the process.
@@ -41,7 +37,7 @@ Version__ used to simplify and speed up the process.
 - [x] Normalize inputs -> [get mean and std](https://github.com/Shathe/DeepLearning/tree/master/ShatheNet/Utils/preprocess_dataset.py) and [apply preprocess](https://github.com/Shathe/DeepLearning/tree/master/ShatheNet/train.py)
 - [x] image augmentation
 - [ ] Try Batch normalization after Relu instead of before
-- [ ] Try not to preprocess (because Batch norm) only x/255 - 0.5 vs Mean substraction 3 channels vs pixel level
+- [ ] Try not to preprocess (because Batch norm) only x/255 - 0.5 vs Mean substraction 3 channels vs pixel level vs festurewise
 - [ ] Compare this inizializers: truncated_normal, lecun_normal, glorot_uniform, VarianceScaling, he_normal, he_uniform
 - [ ] Try different regularizations: conv2D:  kernel_regularizer=l2(weight_decay), l1_l2, dropouts (0.2/0.5) and for BatcNorm : gamma_regularizer=l2(weight_decay),    beta_regularizer=l2(weight_decay), 
 - [ ] Try different activations: relu, selu, and (advanced_activations: LeakyReLU, PReLU, ThresholdedReLU)
@@ -58,7 +54,7 @@ Version__ used to simplify and speed up the process.
 Striding vs pooling: Striding takes less computation. Pooling takes to converge somewhat earlier. Poolings tends to get 1% more accuracy.
 
 ## Things to learn
-- [ ] [Standford videos course](https://www.youtube.com/watch?v=vT1JzLTH4G4&t=54s) 4/16 watched 
+- [ ] [Standford videos course](https://youtu.be/bNb2fEVKeEo?t=1804) 5/16 watched 
 
 
 
