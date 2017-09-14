@@ -5,15 +5,9 @@ This project is aimed to build a end-to-end neural network focusing on one topic
 The first step is, obviously, to choose what to do. These are the possibilities:
 
 
-- [ ] Someting from videos.
-- [ ] Something related with LSTM??
-- [ ] Something realted with GANs?
-- [ ] Gan text generator?
-- [ ] Image generation?
-- [ ] Video/image captioning?
-- [ ] Sentiment analisys? Them apply to Twitter hashtags?
-- [ ] Text synthesis
-- [ ] Music systhesis
+- [ ] Multimodal with DenseNet (the small one) (keras implementation or keras_contrib). Using for example Twitter API (text, image?)
+- [ ] Try image captioning
+- [ ] Try video summarization (most important frames)
 
 
 

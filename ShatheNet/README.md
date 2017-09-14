@@ -18,7 +18,7 @@ Its size is 1GB. I use this dataset instead of Iamgenet due to its size which ma
 | [1.1](https://github.com/Shathe/DeepLearning/tree/master/ShatheNet/images/v1_2.png)     | + convs. +Params  | 1.25M   | 76% |
 | [1.2](https://github.com/Shathe/DeepLearning/tree/master/ShatheNet/images/v1_1.png)     | + convs. - Params  | 930K   | 83% |
 | [1.3](https://github.com/Shathe/DeepLearning/tree/master/ShatheNet/images/v1_3.png)     | + convs. +Params  | 1.74M   | 86% |
-| [2.0](https://github.com/Shathe/DeepLearning/tree/master/ShatheNet/images/v2.png)       | Deeper. Inception modules. Residual conections. Very cool  |  16.25M  | wait to 	convergence |
+| [2.0](https://github.com/Shathe/DeepLearning/tree/master/ShatheNet/images/v2.png)       | Deeper. Inception modules. Residual conections. Very cool  |  16.25M  | 90.6% |
 |State-of-the-art    | Complex architectures. ImAug. InNorm |  2 - 35 M|  91.5 - 96.5% |
 
 ### Batch normalization 

@@ -22,8 +22,15 @@ for filename in glob.glob(TRAIN_PATH +"*/*"):
 	images[i,:,:,:]=img
 	i = i + 1
 
-#IT CAN BE DONE ONLY FOR ONE VALUE PER CHANNEL
+mean = np.mean(images, axis = 0, dtype=np.float32)
+mean = np.mean(mean, axis = 0, dtype=np.float32)
+mean = np.mean(mean, axis = 0, dtype=np.float32)
+print(mean)
 
+
+
+#IT CAN BE DONE ONLY FOR ONE VALUE PER CHANNEL
+'''
 print("Computing std...")
 std = np.std(images, axis = 0, dtype=np.float32)
 std2=np.array(std, dtype=np.float16)
@@ -45,3 +52,4 @@ std =  np.load("./std.npy")
 print(std.shape)
 print(std)
 
+'''

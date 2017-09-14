@@ -17,21 +17,15 @@ batch_size = 64
 learning_rate = 0.00015
 
 
-#load mean and std
-mean =  np.load("./Dataset/mean.npy")
-std =  np.load("./Dataset/std.npy")
-print(std.shape)
 
 
 #preprocessing_function
 def preproces(x):
 	# global mean
 	# global mean
-	x -= mean
-	x /= std
+	x -= np.array([113.75182343,  122.83719635, 125.19327545])
+	#x = x/255.0 - 0.5
 	return x
-# [ 116.44942474  127.21828461  129.72529602]
-
 
 
 
