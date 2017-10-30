@@ -135,13 +135,16 @@ def ShatheNet_v2_0_multimodal(n_classes=256, weights=None, shape_images=(192, 19
     # if you want more lstm layers, the previous has to have:  return_sequences=True
     x_text = layers.Conv1D(128, 3, padding='valid', activation='relu', input_shape=shape_text)(input_text)
     x_text = layers.GlobalMaxPooling1D()(x_text)
-
     #aqui podrias meter antes otras densas o LSTM
     x = layers.Conv2D(16, (7, 7), padding='same', activation='relu', input_shape=shape_images,
                      kernel_initializer='truncated_normal', strides=(5, 5))(input_image)
+    print (x.shape)
+
     x = conv2d_bn(x, 16, 5, 5, padding='same', strides=(2, 2))
     x = conv2d_bn(x, 32, 1, 1, padding='same', strides=(2, 2))
     x = conv2d_bn(x, 32, 3, 3, padding='same', strides=(2, 2))
+    print (x.shape)
+
     x = layers.MaxPooling2D((2, 2))(x)
     x = dense_block(x, 3, 32)
     x = layers.GlobalAveragePooling2D()(x)

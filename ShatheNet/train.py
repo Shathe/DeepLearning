@@ -35,7 +35,7 @@ data_gen_args = dict(preprocessing_function=preproces,
 				    height_shift_range=0.15,
 				    shear_range=1.5,
 				    zoom_range=0.35,
-				    channel_shift_range=0.1,
+				    channel_shift_range=20,
 				    horizontal_flip=True,
 				    vertical_flip=True)
 # this is the augmentation configuration we will use for training
@@ -65,7 +65,11 @@ nb_validation_samples = validation_generator.samples
 model = ShatheNet_v2(n_classes=n_classes)
 
 model.summary() 
-utils.plot_model(model, to_file='v2.png')
+#utils.plot_model(model, to_file='v2.png')
+
+
+
+
 
 
 # compile the model (should be done *after* setting layers to non-trainable)
@@ -76,7 +80,7 @@ model.compile(loss='categorical_crossentropy', optimizer=adam, metrics=['accurac
 
 
 model.fit_generator(train_generator, steps_per_epoch=nb_train_samples // batch_size, epochs=epochs,
-                    validation_data=validation_generator, validation_steps=nb_validation_samples // batch_size)
+                    validation_data=validation_generator, validation_steps=nb_validation_samples // batch_size, callbacks=[reduce_lr])
 
 score = model.evaluate_generator(validation_generator, nb_validation_samples)
 #model.save('my_model_final.h5')

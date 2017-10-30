@@ -26,23 +26,14 @@ for _, dirnames, filenames in os.walk(train_data_dir):
   # ^ this idiom means "we won't be using this value"
     n_classes += len(dirnames)
     break
-
 x_train, description_train, y_train, x_test, description_test, y_test, dic = getData(dataFolder=str(args.dataFolder), 
 															n_training_samples_train = 30000,n_training_samples_test= 5000, n_classes=n_classes)
-
-mean =  np.load(str(args.dataFolder) + 'mean.npy')
-std =  np.load(str(args.dataFolder) + 'std.npy')
-print(std.shape)
-
 
 
 #preprocessing_function
 def preproces(x):
-	#return x/255.0 - 0.5
+	return x/255.0 - 0.5
 
-	x -= mean
-	x /= std
-	return x
 
 x_test = preproces(x_test)
 x_train = preproces(x_train)
@@ -53,16 +44,17 @@ for a in y_train:
 '''
 model = ShatheNet_v2_0_multimodal(n_classes=n_classes, weights=None, shape_images=(192, 192, 3), shape_text=description_train.shape[1:])
 #model = ShatheNet_text(n_classes=n_classes, weights=None, shape_images=(192, 192, 3), shape_text=description_train.shape[1:])
+model.summary()
 
 adam = optimizers.Adam(lr=learning_rate) # decay=0.0001? decay 1/(1+decay*epochs*batches_per_epoch)*lr
 model.compile(loss='categorical_crossentropy', optimizer=adam, metrics=[metrics.categorical_accuracy])
+reduce_lr = callbacks.ReduceLROnPlateau(monitor='val_loss', verbose=1)
 
-
-model.fit([x_train, description_train], y_train, batch_size=n_batches, epochs=epochs, validation_data=([x_test, description_test], y_test))
+model.fit([x_train, description_train], y_train, batch_size=n_batches, epochs=epochs, validation_data=([x_test, description_test], y_test), callbacks=[reduce_lr])
 #model.fit(x_train, y_train, batch_size=n_batches, epochs=epochs, validation_data=(x_test, y_test))
 #model.fit(description_train, y_train, batch_size=n_batches, epochs=epochs, validation_data=(description_test, y_test))
 
-score = model.evaluate(x, y, batch_size=n_batches)
+score = model.evaluate(x_test, y_test, batch_size=n_batches)
 #model.save('my_model_final.h5')
 print('Test loss:', score[0])
 print('Test accuracy:', score[1])

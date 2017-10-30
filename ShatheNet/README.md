@@ -23,13 +23,15 @@ Its size is 1GB. I use this dataset instead of Iamgenet due to its size which ma
 
 ### Batch normalization 
 Version__ used to simplify and speed up the process.
+See Stanford videos
 ### Preprocess
 ### Inizializers
 ### Regularizations
+(thanks to BatchNorm nos e necesita dropout)
+See Stanford videos
 ### Activations
+See Stanford videos
 ### Optimizers
-### Pooling
-### Stride vs Pool
     
 ## Things yet to be tried
 
@@ -42,12 +44,10 @@ Version__ used to simplify and speed up the process.
 - [ ] Try different regularizations: conv2D:  kernel_regularizer=l2(weight_decay), l1_l2, dropouts (0.2/0.5) and for BatcNorm : gamma_regularizer=l2(weight_decay),    beta_regularizer=l2(weight_decay), 
 - [ ] Try different activations: relu, selu, and (advanced_activations: LeakyReLU, PReLU, ThresholdedReLU)
 - [ ] Try different optimizers: Compare speed and accuracy: Adam, SGD, RMSprop, Nadam, Adamax
-- [ ] AveragePooling vs MaxPool (intermediate pools) and GlobalAveragePool vs GlobalMaxPool vs Maxpool(last Pool)
-- [ ] Striding vs pooling
 - [ ] Try using other hyperparametres, like weight decay and its different types (use  keras scheduler).
-- [ ] Try to join image information with other type of information (multimodal)
+- [x] Try to join image information with other type of information (multimodal)
 - [ ] [Importance sampling](http://idiap.ch/~katharas/importance-sampling/)
-- [ ] Use some residual conections (See DenseNet and Resnet and Inception arquitectures and theri keras implementations in order to learn why and how)
+- [x] Use some residual conections (See DenseNet and Resnet and Inception arquitectures and theri keras implementations in order to learn why and how)
 
 *(Research also theory about it seeing what are avaidable in Keras).
 
@@ -63,3 +63,14 @@ Striding vs pooling: Striding takes less computation. Pooling takes to converge 
 May be show some kernels in order to see wat is learning?
 Try multi-ipunt?(concatenating them in some convos with the same size or seing how)
 (concatenations have to be the same size, that's why DenseNet did not use pools and use zeropading-1 in the dense blocks)
+
+Some blogs:
+
+https://blog.keras.io/ 
+http://machinelearningmastery.com/blog/ 
+https://machinelearning.apple.com/
+http://blog.echen.me/ 
+https://blogs.nvidia.com/blog/category/deep-learning/ 
+http://karpathy.github.io/ 
+https://www.blog.google/topics/machine-learning/ 
+
